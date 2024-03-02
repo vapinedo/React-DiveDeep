@@ -1,5 +1,7 @@
-const listElement = document.getElementById("list");
-const newListItem = document.createElement("li");
-newListItem.textContent = "Item 3";
+const countElement = document.getElementById("count");
 
-setTimeout(() => listElement.appendChild(newListItem), 4000);
+function setCount() {
+    let count = Number(countElement.textContent);
+    count = count + 1;
+    countElement.textContent = count;
+}
