@@ -1,9 +1,68 @@
-function countDown(num) {
-    console.log(num);
+let virtualDOM = {
+    type: "article",
+    children: [
+        {
+            type: "h2",
+            children: [
+                {
+                    type: "text",
+                    value: "Counter"
+                }
+            ]
+        },
+        {
+            type: "p",
+            children: [
+                {
+                    type: "text",
+                    value: "Counter "
+                },
+                {
+                    type: "strong",
+                    children: [
+                        {
+                            type: "em",
+                            children: [
+                                {
+                                    type: "text",
+                                    value: "1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: "text",
+                    value: "times"
+                }
+            ]
+        },
+        {
+            type: "button",
+            children: [
+                {
+                    type: "text",
+                    value: "Click me"
+                }
+            ]
+        }
+    ]
+};
 
-    if (num === 0 ) return;
-    
-    countDown(num - 1);
+const main = document.getElementById("app");
+
+function addElements(pojoElement, parentDOMNode) {
+    let newDOMNode = pojoElement.type === "text"
+        ? document.createTextNode(pojoElement.value)
+        : document.createElement(pojoElement.type);
+
+    if (pojoElement.children)  {
+        pojoElement.children.forEach((child) => {
+            addElements(child, newDOMNode);
+        });
+    }
+    console.log(parentDOMNode);
+    parentDOMNode.appendChild(newDOMNode);
 }
 
-countDown(5);
+addElements(virtualDOM, main);
