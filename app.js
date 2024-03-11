@@ -1,68 +1,14 @@
-let virtualDOM = {
-    type: "article",
-    children: [
-        {
-            type: "h2",
-            children: [
-                {
-                    type: "text",
-                    value: "Counter"
-                }
-            ]
-        },
-        {
-            type: "p",
-            children: [
-                {
-                    type: "text",
-                    value: "Counter "
-                },
-                {
-                    type: "strong",
-                    children: [
-                        {
-                            type: "em",
-                            children: [
-                                {
-                                    type: "text",
-                                    value: "1"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    type: "text",
-                    value: "times"
-                }
-            ]
-        },
-        {
-            type: "button",
-            children: [
-                {
-                    type: "text",
-                    value: "Click me"
-                }
-            ]
-        }
-    ]
-};
+const rootNode = document.getElementById("app");
+const root = ReactDOM.createRoot(rootNode);
+root.render(React.createElement(App));
 
-const main = document.getElementById("app");
-
-function addElements(pojoElement, parentDOMNode) {
-    let newDOMNode = pojoElement.type === "text"
-        ? document.createTextNode(pojoElement.value)
-        : document.createElement(pojoElement.type);
-
-    if (pojoElement.children)  {
-        pojoElement.children.forEach((child) => {
-            addElements(child, newDOMNode);
-        });
-    }
-    console.log(parentDOMNode);
-    parentDOMNode.appendChild(newDOMNode);
+function App() {
+    return (
+        React.createElement("article", null,
+            React.createElement("h2", null, "Counter "),
+            React.createElement("p", null, "You clicked 1 times"),
+            React.createElement("button", null, "Click me"))
+    )
 }
 
-addElements(virtualDOM, main);
+console.log(App())
