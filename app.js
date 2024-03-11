@@ -1,5 +1,4 @@
 const rootNode = document.getElementById("app");
-
 const root = ReactDOM.createRoot(rootNode);
 root.render(React.createElement(App));
 
@@ -11,16 +10,3 @@ function App() {
             React.createElement("button", null, "Click me"))
     )
 }
-
-let articleElements = document.getElementsByTagName("article")
-let articleElement = document.getElementsByTagName("article").item(0)
-console.log(articleElements)
-console.log(articleElement)
-
-// This will run after React's code already has done
-setTimeout(() => {
-    let articleElements = document.getElementsByTagName("article")
-    let articleElement = document.getElementsByTagName("article").item(0)
-    console.log(articleElements)
-    console.log(articleElement)
-}, 1000);
