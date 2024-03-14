@@ -1,27 +1,22 @@
-const rootNode = document.getElementById("app");
-const root = ReactDOM.createRoot(rootNode);
-root.render(React.createElement(App));
+let counter = { name: "Counter" };
+let counterValue = 1;
 
-function App() {
-  return React.createElement(
-    "section",
-    null,
-    React.createElement("h1", null, "Counters"),
-    React.createElement(
-      "section",
-      null,
-      React.createElement(Counter, null),
-      React.createElement(Counter, null)
-    )
-  );
+function pureCounter(counter, value) {
+  return `${counter.name} ${value}`;
 }
 
-function Counter() {
-  return React.createElement(
-    "article",
-    null,
-    React.createElement("h2", null, "Counter "),
-    React.createElement("p", null, "You clicked 1 times"),
-    React.createElement("button", null, "Click me")
-  );
+function notPureCounter(counter, value) {
+  counter.name = counter.name + " Tony";
+  counterValue = counterValue + 1;
+  return `${counter.name} ${value}`;
 }
+
+console.log(pureCounter(counter, counterValue));
+console.log(pureCounter(counter, counterValue + 1));
+console.log(pureCounter(counter, counterValue));
+
+console.log("----------------");
+
+console.log(notPureCounter(counter, counterValue));
+console.log(notPureCounter(counter, counterValue + 1));
+console.log(notPureCounter(counter, counterValue));
